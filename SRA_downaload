@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source activate sra-env
+OUTDIR="SRA_files"
+mkdir -p "$OUTDIR"
+
+for id in $(seq 22576095 22576132); do
+    prefetch SRR$id --max-size 100GB -O "$OUTDIR"
+done
+
+
