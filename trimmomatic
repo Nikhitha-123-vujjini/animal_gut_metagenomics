@@ -1,0 +1,21 @@
+#!/bin/bash
+
+FASTQDIR="fastq_files"
+OUTDIR="trimmed"
+
+mkdir -p "$OUTDIR"
+
+for f in "$FASTQDIR"/*_1.fastq; do
+    base=$(basename "$f" _1.fastq)
+
+    r1="$FASTQDIR/${base}_1.fastq"
+    r2="$FASTQDIR/${base}_2.fastq"
+
+    trimmomatic PE -threads 4 \
+        "$r1" "$r2" \
+        "$OUTDIR/${base}_1_paired.fastq" "$OUTDIR/${base}_1_unpaired.fastq" \
+        "$OUTDIR/${base}_2_paired.fastq" "$OUTDIR/${base}_2_unpaired.fastq" \
+        SLIDINGWINDOW:4:20 MINLEN:50
+
+done
+
