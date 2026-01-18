@@ -21,8 +21,6 @@ for folder in "$SRA_DIR"/*; do
 
     fasterq-dump "$sra" --split-files -O "$OUTDIR"
 
-    gzip "$OUTDIR/${base}_1.fastq"
-    gzip "$OUTDIR/${base}_2.fastq"
 done
 
 echo "All done!"
