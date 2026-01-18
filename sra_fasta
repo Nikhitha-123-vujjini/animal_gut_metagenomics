@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+
+SRA_DIR="SRA_files"
+OUTDIR="fastq_files"
+
+mkdir -p "$OUTDIR"
+
+for folder in "$SRA_DIR"/*; do
+    sra=$(echo "$folder"/*.sra)
+
+    if [[ ! -f $sra ]]; then
+        echo "Skipping $folder (no SRA file)"
+        continue
+    fi
+
+    base=$(basename "$folder")
+
+    echo "Processing $sra ..."
+
+    fasterq-dump "$sra" --split-files -O "$OUTDIR"
+
+    gzip "$OUTDIR/${base}_1.fastq"
+    gzip "$OUTDIR/${base}_2.fastq"
+done
+
+echo "All done!"
+
+
+
