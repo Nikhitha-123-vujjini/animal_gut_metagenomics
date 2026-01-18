@@ -1,0 +1,12 @@
+#!/bin/bash
+conda activate genomics
+
+FASTQDIR="fastq_files"
+OUTDIR="qc_reports"
+
+mkdir -p "$OUTDIR"
+
+for file in $FASTQDIR/*.fastq; do
+    echo "Running FastQC on $file"
+    fastqc "$file" -o "$OUTDIR"
+done
