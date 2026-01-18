@@ -51,9 +51,9 @@ Quality control analysis showed high-quality Illumina reads across samples. Adap
 
 ## Quality Control Visualization
 Representative quality control plots generated using FastQC and MultiQC are shown below. Raw reads exhibited high base quality across most positions, with further improvement observed after adapter and quality trimming.
-![MultiQC general statistics](figures/multiqc_general_stats.png)
+![MultiQC general statistics](multiqc_summary/multiqc_data/multiqc_general_stats.png)
 
-![FastQC per-base sequence quality](figures/fastqc_per_base_quality.png)
+![FastQC per-base sequence quality](multiqc_summary/multiqc_data/fastqc_per_base_quality.png)
 ## Mitochondrial Mapping Results
 Reads were mapped to the African elephant mitochondrial reference genome (NC_000934.1). Mapping statistics provided strong evidence for host mitochondrial DNA presence:
 
