@@ -1,0 +1,14 @@
+#!/bin/bash
+
+conda activate genomics
+
+FASTQDIR="trimmed"
+OUTDIR="trimmed_qc_reports"
+
+
+mkdir -p "$OUTDIR"
+
+for file in $FASTQDIR/*paired.fastq; do
+    echo "Running FastQC on $file"
+    fastqc "$file" -o "$OUTDIR"
+done
