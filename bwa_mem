@@ -1,0 +1,20 @@
+#!/bin/bash
+
+REF="elephant_mt.fasta"
+TRIMDIR="trimmed"
+OUTDIR="mapped_sam"
+
+mkdir -p "$OUTDIR"
+
+for r1 in $TRIMDIR/*_1_paired.fastq; do
+    base=$(basename "$r1" _1_paired.fastq)
+    r2="${TRIMDIR}/${base}_2_paired.fastq"
+
+    echo "Mapping $base ..."
+
+    bwa mem -t 8 "$REF" "$r1" "$r2" \
+        | samtools view -b -F 4 \
+        | samtools sort -o "$OUTDIR/${base}.mt.sorted.bam"
+
+    samtools index "$OUTDIR/${base}.mt.sorted.bam"
+done
